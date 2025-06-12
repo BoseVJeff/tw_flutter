@@ -4,7 +4,6 @@ import 'package:code_builder/code_builder.dart';
 import 'package:csslib/parser.dart' as p;
 import 'package:csslib/visitor.dart' as v;
 import 'package:dart_style/dart_style.dart';
-import 'package:helpers/breakpoint_visitor.dart';
 import 'package:helpers/container_breakpoint_visitor.dart';
 import 'package:logging/logging.dart';
 

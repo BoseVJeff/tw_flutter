@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   Radius radius = TwRadius.lg;
   double breakpoint = TwBreakpoints.md;
   double containerBreakpoint = TwContainerBreakpoint.md;
+  bool isTailwindTransition = true;
 
   void switchSeedColor(MaterialColor newColor) => setState(() {
     seedColor = newColor;
@@ -65,7 +66,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Tailwind Demo',
+      themeAnimationDuration: TwTransition.duration,
+      themeAnimationCurve: TwTransition.curve,
       themeMode: mode,
       theme: ThemeData(
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -126,6 +129,20 @@ class _MyAppState extends State<MyApp> {
                           ),
                   )
                   .toList(),
+            ),
+            Text("Animation Curve"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Material"),
+                Switch(
+                  value: isTailwindTransition,
+                  onChanged: (bool newValue) => setState(() {
+                    isTailwindTransition = newValue;
+                  }),
+                ),
+                Text("Tailwind"),
+              ],
             ),
             Text("Material Colors"),
             Wrap(

@@ -1,6 +1,6 @@
 set windows-shell := ["pwsh.exe", "-NoLogo", "-Command"]
 
-build: build-hex-json build-hex build-css build-css-hex build-css-material build-shadow build-text-shadow build-blur build-radius build-breakpoint build-container-breakpoint build-transition
+build: build-hex-json build-hex build-css build-css-hex build-css-material build-shadow build-text-shadow build-blur build-radius build-breakpoint build-container-breakpoint build-transition build-curves
 
 build-hex-json:
     dart run helpers/bin/parse_hex.dart tailwindcss.com\src\components\color.tsx
@@ -37,3 +37,6 @@ build-container-breakpoint:
 
 build-transition:
     dart run helpers/bin/parse_default_transition.dart tailwindcss/packages/tailwindcss/theme.css
+
+build-curves:
+    dart run helpers/bin/parse_curve_ease.dart tailwindcss/packages/tailwindcss/theme.css

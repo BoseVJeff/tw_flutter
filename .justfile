@@ -34,3 +34,6 @@ build-breakpoint:
 
 build-container-breakpoint:
     dart run helpers/bin/parse_container_breakpoints.dart tailwindcss/packages/tailwindcss/theme.css
+
+build-transition:
+    dart run helpers/bin/parse_default_transition.dart tailwindcss/packages/tailwindcss/theme.css

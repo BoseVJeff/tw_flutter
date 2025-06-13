@@ -4,6 +4,7 @@ export 'gradients.dart';
 export 'blurs.dart';
 export 'radii.dart';
 export 'breakpoints.dart';
+export 'transition.dart';
 
 /// A Calculator.
 class Calculator {

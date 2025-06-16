@@ -8,4 +8,6 @@ const Map<String, String> nameMapping = {
   "5xl": "xl5",
   "6xl": "xl6",
   "7xl": "xl7",
+  "8xl": "xl8",
+  "9xl": "xl9",
 };

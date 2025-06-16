@@ -129,26 +129,26 @@ extension TwFontSize on TextStyle {
 
 extension TwCharSpacing on TextStyle {
   TextStyle charTighter() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.tighter);
+    return copyWith(letterSpacing: TwCharSpacingRaw.tighter * (fontSize ?? 16));
   }
 
   TextStyle charTight() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.tight);
+    return copyWith(letterSpacing: TwCharSpacingRaw.tight * (fontSize ?? 16));
   }
 
   TextStyle charNormal() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.normal);
+    return copyWith(letterSpacing: TwCharSpacingRaw.normal * (fontSize ?? 16));
   }
 
   TextStyle charWide() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.wide);
+    return copyWith(letterSpacing: TwCharSpacingRaw.wide * (fontSize ?? 16));
   }
 
   TextStyle charWider() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.wider);
+    return copyWith(letterSpacing: TwCharSpacingRaw.wider * (fontSize ?? 16));
   }
 
   TextStyle charWidest() {
-    return copyWith(letterSpacing: TwCharSpacingRaw.widest);
+    return copyWith(letterSpacing: TwCharSpacingRaw.widest * (fontSize ?? 16));
   }
 }

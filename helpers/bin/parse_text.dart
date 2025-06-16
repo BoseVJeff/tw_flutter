@@ -127,7 +127,9 @@ void main(List<String> args) {
         Method((MethodBuilder m) {
           m.name = "char${e[0].toUpperCase()}${e.substring(1)}";
           m.returns = Reference("TextStyle");
-          m.body = Code("return copyWith(letterSpacing: TwCharSpacingRaw.$e);");
+          m.body = Code(
+            "return copyWith(letterSpacing: TwCharSpacingRaw.$e * (fontSize??16));",
+          );
         }),
       );
     }

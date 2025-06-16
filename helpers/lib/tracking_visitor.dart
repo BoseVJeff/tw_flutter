@@ -25,3 +25,28 @@ class TrackingVisitor extends Visitor {
     value = (node.value as num).toDouble();
   }
 }
+
+class LeadingVisitor extends Visitor {
+  static const String prefix = "--leading-";
+
+  /// Multiply this by the font size to get the usable `px` value.
+  Map<String, double> parsedLeading = {};
+  double? value;
+
+  @override
+  visitDeclaration(Declaration node) {
+    if (node.property.startsWith(prefix)) {
+      String name = node.property.substring(prefix.length);
+      name = nameMapping[name] ?? name;
+
+      node.expression!.visit(this);
+
+      parsedLeading.addAll({name: value!});
+    }
+  }
+
+  @override
+  visitNumberTerm(NumberTerm node) {
+    value = (node.value as num).toDouble();
+  }
+}

@@ -73,6 +73,19 @@ abstract class TwCharSpacingRaw {
   static const widest = 0.1;
 }
 
+/// All leading/line heights defined in Tailwind
+abstract class TwLeadingRaw {
+  static const tight = 1.25;
+
+  static const snug = 1.375;
+
+  static const normal = 1.5;
+
+  static const relaxed = 1.625;
+
+  static const loose = 2.0;
+}
+
 extension TwFontSize on TextStyle {
   TextStyle xs() {
     return copyWith(fontSize: TwFontSizeRaw.xs, height: TwLineHeightRaw.xs);
@@ -150,5 +163,27 @@ extension TwCharSpacing on TextStyle {
 
   TextStyle charWidest() {
     return copyWith(letterSpacing: TwCharSpacingRaw.widest * (fontSize ?? 16));
+  }
+}
+
+extension TwLeading on TextStyle {
+  TextStyle leadingTight() {
+    return copyWith(height: 1.25);
+  }
+
+  TextStyle leadingSnug() {
+    return copyWith(height: 1.375);
+  }
+
+  TextStyle leadingNormal() {
+    return copyWith(height: 1.5);
+  }
+
+  TextStyle leadingRelaxed() {
+    return copyWith(height: 1.625);
+  }
+
+  TextStyle leadingLoose() {
+    return copyWith(height: 2.0);
   }
 }

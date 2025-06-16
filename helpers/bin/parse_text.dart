@@ -42,10 +42,15 @@ void main(List<String> args) {
   TrackingVisitor trackingVisitor = TrackingVisitor();
   tree.visit(trackingVisitor);
 
+  LeadingVisitor leadingVisitor = LeadingVisitor();
+  tree.visit(leadingVisitor);
+
   print(visitor.parsedSizes);
   print(visitor.parsedHeights);
 
   print(trackingVisitor.parsedTracking);
+
+  print(leadingVisitor.parsedLeading);
 
   LibraryBuilder lib = LibraryBuilder();
   lib.directives.add(Directive.import("package:flutter/painting.dart"));
@@ -135,12 +140,47 @@ void main(List<String> args) {
     }
   });
 
+  Class moreHeightClass = Class((ClassBuilder cb) {
+    cb.abstract = true;
+    cb.name = "TwLeadingRaw";
+    cb.docs.add("/// All leading/line heights defined in Tailwind");
+
+    for (var e in leadingVisitor.parsedLeading.entries) {
+      cb.fields.add(
+        Field((FieldBuilder f) {
+          f.static = true;
+          f.modifier = FieldModifier.constant;
+          f.name = e.key;
+          f.assignment = Code(e.value.toString());
+        }),
+      );
+    }
+  });
+
+  Extension leadingExtension = Extension((ExtensionBuilder eb) {
+    eb.name = "TwLeading";
+    eb.on = Reference("TextStyle");
+    for (var e in leadingVisitor.parsedLeading.keys) {
+      eb.methods.add(
+        Method((MethodBuilder m) {
+          m.name = "leading${e[0].toUpperCase()}${e.substring(1)}";
+          m.returns = Reference("TextStyle");
+          m.body = Code(
+            "return copyWith(height: ${leadingVisitor.parsedLeading[e]});",
+          );
+        }),
+      );
+    }
+  });
+
   lib.body.addAll([
     sizeClass,
     heightClass,
     spacingClass,
+    moreHeightClass,
     sizeExtension,
     spacingExtension,
+    leadingExtension,
   ]);
 
   DartEmitter emitter = DartEmitter();

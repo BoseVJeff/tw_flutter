@@ -1,8 +1,8 @@
 import 'package:csslib/visitor.dart';
 import 'package:helpers/consts.dart';
 import 'package:logging/logging.dart';
-import 'package:sass/src/value.dart';
-import 'package:sass_api/sass_api.dart' show SassCalculation, SassString;
+import 'package:sass_api/sass_api.dart'
+    show SassCalculation, CalculationOperator, SassNumber;
 
 class TextVisitor extends Visitor {
   static const String prefix = "--text-";

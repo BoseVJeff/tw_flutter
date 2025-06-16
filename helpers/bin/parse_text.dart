@@ -45,6 +45,9 @@ void main(List<String> args) {
   LeadingVisitor leadingVisitor = LeadingVisitor();
   tree.visit(leadingVisitor);
 
+  WeightVisitor weightVisitor = WeightVisitor();
+  tree.visit(weightVisitor);
+
   print(visitor.parsedSizes);
   print(visitor.parsedHeights);
 
@@ -52,7 +55,10 @@ void main(List<String> args) {
 
   print(leadingVisitor.parsedLeading);
 
+  print(weightVisitor.parsedWeights);
+
   LibraryBuilder lib = LibraryBuilder();
+  lib.directives.add(Directive.import("dart:ui"));
   lib.directives.add(Directive.import("package:flutter/painting.dart"));
 
   Class sizeClass = Class((ClassBuilder cb) {
@@ -173,14 +179,48 @@ void main(List<String> args) {
     }
   });
 
+  Class weightClass = Class((ClassBuilder cb) {
+    cb.name = "TwFontWeightRaw";
+    cb.abstract = true;
+    cb.docs.add("/// All font weights as defined in Tailwind");
+
+    for (var e in weightVisitor.parsedWeights.entries) {
+      cb.fields.add(
+        Field((FieldBuilder f) {
+          f.static = true;
+          f.modifier = FieldModifier.constant;
+          f.type = Reference("FontWeight");
+          f.name = e.key;
+          f.assignment = Code("FontWeight.w${e.value.toInt().toString()}");
+        }),
+      );
+    }
+  });
+
+  Extension weightExtension = Extension((ExtensionBuilder eb) {
+    eb.name = "TwFontWeight";
+    eb.on = Reference("TextStyle");
+    for (var e in weightVisitor.parsedWeights.keys) {
+      eb.methods.add(
+        Method((MethodBuilder m) {
+          m.name = "weight${e[0].toUpperCase()}${e.substring(1)}";
+          m.returns = Reference("TextStyle");
+          m.body = Code("return copyWith(fontWeight: TwFontWeightRaw.$e);");
+        }),
+      );
+    }
+  });
+
   lib.body.addAll([
     sizeClass,
     heightClass,
     spacingClass,
     moreHeightClass,
+    weightClass,
     sizeExtension,
     spacingExtension,
     leadingExtension,
+    weightExtension,
   ]);
 
   DartEmitter emitter = DartEmitter();

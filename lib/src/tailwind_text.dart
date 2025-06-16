@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/painting.dart';
 
 /// All font sizes as defined in Tailwind
@@ -84,6 +85,27 @@ abstract class TwLeadingRaw {
   static const relaxed = 1.625;
 
   static const loose = 2.0;
+}
+
+/// All font weights as defined in Tailwind
+abstract class TwFontWeightRaw {
+  static const FontWeight thin = FontWeight.w100;
+
+  static const FontWeight extralight = FontWeight.w200;
+
+  static const FontWeight light = FontWeight.w300;
+
+  static const FontWeight normal = FontWeight.w400;
+
+  static const FontWeight medium = FontWeight.w500;
+
+  static const FontWeight semibold = FontWeight.w600;
+
+  static const FontWeight bold = FontWeight.w700;
+
+  static const FontWeight extrabold = FontWeight.w800;
+
+  static const FontWeight black = FontWeight.w900;
 }
 
 extension TwFontSize on TextStyle {
@@ -185,5 +207,43 @@ extension TwLeading on TextStyle {
 
   TextStyle leadingLoose() {
     return copyWith(height: 2.0);
+  }
+}
+
+extension TwFontWeight on TextStyle {
+  TextStyle weightThin() {
+    return copyWith(fontWeight: TwFontWeightRaw.thin);
+  }
+
+  TextStyle weightExtralight() {
+    return copyWith(fontWeight: TwFontWeightRaw.extralight);
+  }
+
+  TextStyle weightLight() {
+    return copyWith(fontWeight: TwFontWeightRaw.light);
+  }
+
+  TextStyle weightNormal() {
+    return copyWith(fontWeight: TwFontWeightRaw.normal);
+  }
+
+  TextStyle weightMedium() {
+    return copyWith(fontWeight: TwFontWeightRaw.medium);
+  }
+
+  TextStyle weightSemibold() {
+    return copyWith(fontWeight: TwFontWeightRaw.semibold);
+  }
+
+  TextStyle weightBold() {
+    return copyWith(fontWeight: TwFontWeightRaw.bold);
+  }
+
+  TextStyle weightExtrabold() {
+    return copyWith(fontWeight: TwFontWeightRaw.extrabold);
+  }
+
+  TextStyle weightBlack() {
+    return copyWith(fontWeight: TwFontWeightRaw.black);
   }
 }

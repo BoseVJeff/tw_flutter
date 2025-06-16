@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:example/utils.dart';
@@ -360,14 +361,10 @@ class _MyAppState extends State<MyApp> {
                   height: 96,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: TailwindGradient.radial(
-                      [
-                        TwSwatchHexColors.pink[400]!,
-                        TwSwatchHexColors.fuchsia[700]!,
-                      ],
-                      center: Alignment.center,
-                      from: 40,
-                    ),
+                    gradient: TailwindGradient.radial([
+                      TwSwatchHexColors.pink[400]!,
+                      TwSwatchHexColors.fuchsia[700]!,
+                    ], from: 0.40),
                   ),
                 ),
                 Container(
@@ -377,8 +374,8 @@ class _MyAppState extends State<MyApp> {
                     shape: BoxShape.circle,
                     gradient: TailwindGradient.radialWithStops({
                       0: TwSwatchHexColors.sky[200]!,
-                      50: TwSwatchHexColors.blue[400]!,
-                      90: TwSwatchHexColors.indigo[900]!,
+                      0.50: TwSwatchHexColors.blue[400]!,
+                      0.90: TwSwatchHexColors.indigo[900]!,
                     }, at: Alignment(0, 0.25)),
                   ),
                 ),
@@ -389,8 +386,8 @@ class _MyAppState extends State<MyApp> {
                     shape: BoxShape.circle,
                     gradient: TailwindGradient.radialWithStops({
                       0: TwBasicColors.white,
-                      75: TwSwatchHexColors.zinc[900]!,
-                    }, at: Alignment(-0.25, -0.25)),
+                      0.75: TwSwatchHexColors.zinc[900]!,
+                    }, at: Alignment(-0.5, -0.5)),
                   ),
                 ),
               ],

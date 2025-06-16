@@ -3,19 +3,16 @@ import 'dart:math';
 import 'package:flutter/painting.dart';
 // import 'package:vector_math/vector_math_64.dart';
 
-List<double> _generateStops(num start, num end, int count) {
-  return List.generate(
-    count,
-    (i) => (start + i * ((end - start) / (count - 1))) / 100,
-  );
+List<double> _generateStops(double start, double end, int count) {
+  return List.generate(count, (i) => start + i * ((end - start) / (count - 1)));
 }
 
 abstract class TailwindGradient {
   static LinearGradient linear(
     Alignment toDirection,
     List<Color> colors, {
-    int? from,
-    int? to,
+    double? from,
+    double? to,
   }) => LinearGradient(
     colors: colors,
     begin: toDirection * -1,
@@ -23,7 +20,7 @@ abstract class TailwindGradient {
     tileMode: TileMode.clamp,
     stops: ((from == null) && (to == null))
         ? null
-        : _generateStops(from ?? 0, to ?? 100, colors.length),
+        : _generateStops(from ?? 0, to ?? 1, colors.length),
   );
 
   static LinearGradient linearWithStops(
@@ -39,36 +36,44 @@ abstract class TailwindGradient {
 
   static RadialGradient radial(
     List<Color> colors, {
-    int? from,
-    int? to,
+    double? from,
+    double? to,
     Alignment at = Alignment.center,
-    Alignment center = Alignment.center,
   }) => RadialGradient(
     colors: colors,
-    center: center,
-    focal: at,
+    // center: (at + Alignment(1, 1)) / 2,
+    center: at,
+    // focal: at,
     // transform: GradientTranslation(at.x, at.y),
+    // radius: max(1, sqrt2 * (to ?? 1)),
     stops: ((from == null) && (to == null))
         ? null
-        : _generateStops(from ?? 0, to ?? 100, colors.length),
+        : _generateStops(from ?? 0, to ?? 1, colors.length),
   );
 
   static RadialGradient radialWithStops(
     Map<double, Color> stops, {
     Alignment at = Alignment.center,
-    Alignment center = Alignment.center,
   }) => RadialGradient(
     colors: stops.values.toList(),
     stops: stops.keys.toList(),
-    center: center,
-    focal: at,
+    center: at,
+    radius: max(
+      1,
+      sqrt(pow(2 * at.x, 2) + pow(2 * at.y, 2)) *
+          (stops.keys.last - stops.keys.elementAt(stops.keys.length - 2)),
+      // sqrt2 * (stops.keys.last - stops.keys.elementAt(stops.keys.length - 2)),
+    ),
+    // radius: 1.06,
+    // center: center,
+    // focal: at,
     // transform: GradientTranslation(at.x, at.y),
   );
 
   static SweepGradient conic(
     List<Color> colors, {
-    int? from,
-    int? to,
+    double? from,
+    double? to,
     int rotation = 0,
   }) => SweepGradient(
     colors: colors,

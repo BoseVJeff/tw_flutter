@@ -91,8 +91,12 @@ void main(List<String> args) {
       Field((b) {
         b.name = "colorList";
         b.modifier = FieldModifier.constant;
+        b.type = Reference("Map<String,ColorSwatch<int>>");
         b.static = true;
         b.assignment = Code("[${colorVisitor.parsedSwatches.keys.join(', ')}]");
+        b.assignment = Code(
+          "{${colorVisitor.parsedSwatches.keys.map((e) => "'$e' : $e").join(', ')}}",
+        );
       }),
     );
   });

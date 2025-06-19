@@ -65,7 +65,7 @@ void main(List<String> args) {
           b.type = Reference("Color");
           SassColor color = e.value;
           String colorSpace;
-          if (color.space == ColorSpace.a98Rgb) {
+          if (color.space == ColorSpace.srgb) {
             colorSpace = "sRGB";
           } else {
             color = color.toSpace(ColorSpace.displayP3);
@@ -117,7 +117,7 @@ void main(List<String> args) {
       for (var s in c.value.entries) {
         SassColor color = s.value;
         String colorSpace;
-        if (color.space == ColorSpace.a98Rgb) {
+        if (color.space == ColorSpace.srgb) {
           colorSpace = "sRGB";
         } else {
           color = color.toSpace(ColorSpace.displayP3);

@@ -7,8 +7,11 @@ import 'package:csslib/visitor.dart' as v;
 import 'package:csslib/parser.dart' as p;
 import 'package:helpers/hex_colors.dart';
 import 'package:sass_api/sass_api.dart';
+import 'package:logging/logging.dart' as l;
 
 void main(List<String> args) {
+  l.Logger.root.level = l.Level.ALL;
+
   String path = args[0];
 
   File cssFile = File(path);
@@ -74,7 +77,7 @@ void main(List<String> args) {
       for (var s in c.value.entries) {
         SassColor color = s.value;
         String colorSpace;
-        if (color.space == ColorSpace.a98Rgb) {
+        if (color.space == ColorSpace.srgb) {
           colorSpace = "sRGB";
         } else {
           color = color.toSpace(ColorSpace.displayP3);

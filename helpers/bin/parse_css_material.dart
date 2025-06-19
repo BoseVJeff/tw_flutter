@@ -80,8 +80,10 @@ void main(List<String> args) {
         if (color.space == ColorSpace.srgb) {
           colorSpace = "sRGB";
         } else {
-          color = color.toSpace(ColorSpace.displayP3);
-          colorSpace = "displayP3";
+          color = color
+              .toSpace(ColorSpace.srgb)
+              .toGamut(GamutMapMethod.localMinde);
+          colorSpace = "sRGB";
         }
         codeBuffer.write(
           "${s.key.toRadixString(10)}: Color.from(alpha:${color.alpha}, red:${color.channel("red")}, green:${color.channel("green")}, blue:${color.channel("blue")}, colorSpace: ColorSpace.$colorSpace),",

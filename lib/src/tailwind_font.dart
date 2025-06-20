@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'tailwind_fonts.dart';
 
 abstract class TwFont {
-  TextStyle monoFor(TargetPlatform platform) {
+  static TextStyle monoFor(TargetPlatform platform) {
     List<String> fonts = TwFonts.monoFor(platform);
     return TextStyle(
       fontFamily: fonts.first,
@@ -12,7 +12,7 @@ abstract class TwFont {
     );
   }
 
-  TextStyle serifFor(TargetPlatform platform) {
+  static TextStyle serifFor(TargetPlatform platform) {
     List<String> fonts = TwFonts.serifFor(platform);
     return TextStyle(
       fontFamily: fonts.first,
@@ -20,7 +20,7 @@ abstract class TwFont {
     );
   }
 
-  TextStyle sansFor(TargetPlatform platform) {
+  static TextStyle sansFor(TargetPlatform platform) {
     List<String> fonts = TwFonts.sansFor(platform);
     return TextStyle(
       fontFamily: fonts.first,
@@ -28,11 +28,11 @@ abstract class TwFont {
     );
   }
 
-  TextStyle get mono => monoFor(defaultTargetPlatform);
+  static TextStyle get mono => monoFor(defaultTargetPlatform);
 
-  TextStyle get serif => serifFor(defaultTargetPlatform);
+  static TextStyle get serif => serifFor(defaultTargetPlatform);
 
-  TextStyle get sans => sansFor(defaultTargetPlatform);
+  static TextStyle get sans => sansFor(defaultTargetPlatform);
 }
 
 extension TwFontEx on TextStyle {

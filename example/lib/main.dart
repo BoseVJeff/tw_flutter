@@ -1,12 +1,111 @@
-import 'dart:math';
 import 'dart:ui';
 
+import 'package:example/pages/blur_page.dart';
+import 'package:example/pages/box_page.dart';
+import 'package:example/pages/breaks_page.dart';
+import 'package:example/pages/colors_page.dart';
+import 'package:example/pages/home_page.dart';
+import 'package:example/pages/text_page.dart';
 import 'package:example/utils.dart';
+import 'package:example/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tw_flutter/tw_flutter.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  // runApp(const MaterialApp(home: Scaffold(body: ColorsPage())));
+  runApp(const TailwindApp());
+}
+
+class TailwindApp extends StatefulWidget {
+  const TailwindApp({super.key});
+
+  @override
+  State<TailwindApp> createState() => _TailwindAppState();
+}
+
+class _TailwindAppState extends State<TailwindApp> {
+  late ({Widget page, String name}) currentPage;
+
+  static const Map<String, ({Widget page, String name})> routes = {
+    "/": (name: "Home", page: HomePage()),
+    "/colors": (name: "Colors", page: ColorsPage()),
+    "/box": (name: "Box Properties", page: BoxPage()),
+    "/blur": (name: "Blurs", page: BlurPage()),
+    "/text": (name: "Text", page: TextPage()),
+    "/breaks": (name: "Breakpoints", page: BreaksPage()),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    currentPage = routes.entries.first.value;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "tw_flutter Demo",
+      theme: ThemeData(
+        scaffoldBackgroundColor: TwBasicColors.white,
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        scaffoldBackgroundColor: TwColors.gray[950],
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.light,
+      themeAnimationDuration: TwTransition.duration,
+      themeAnimationCurve: TwTransition.curve,
+      home: Scaffold(
+        appBar: AppBar(title: Text(currentPage.name)),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return Container(
+              // width: constraints.maxWidth,
+              // height: constraints.maxHeight,
+              constraints: BoxConstraints(
+                minWidth: constraints.maxWidth,
+                minHeight: constraints.maxHeight,
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft / 64,
+                  end: Alignment.bottomRight / 64,
+                  colors: [
+                    TwColors.gray[950]!.withAlpha(0x1a),
+                    TwColors.gray[950]!.withAlpha(0x1a),
+                    Colors.transparent,
+                    Colors.transparent,
+                  ],
+                  stops: [0, 0.05, 0.05, 1],
+                  tileMode: TileMode.repeated,
+                ),
+              ),
+              child: Container(
+                margin: TwMargin.p(4),
+                padding: TwPadding.p(2),
+                decoration: BoxDecoration(
+                  color: TwBasicColors.white,
+                  border: Border.all(color: TwColors.gray[950]!.withAlpha(13)),
+                  borderRadius: BorderRadius.all(TwRadius.lg),
+                ),
+                child: currentPage.page,
+              ),
+            );
+          },
+        ),
+        drawer: DrawerWidget(
+          pages: routes,
+          onTap: (String path) {
+            setState(() {
+              currentPage = routes[path]!;
+            });
+          },
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {

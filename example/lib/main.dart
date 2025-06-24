@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+import 'package:example/pages/animation_page.dart';
 import 'package:example/pages/blur_page.dart';
 import 'package:example/pages/box_page.dart';
 import 'package:example/pages/breaks_page.dart';
 import 'package:example/pages/colors_page.dart';
+import 'package:example/pages/gradient_page.dart';
 import 'package:example/pages/home_page.dart';
 import 'package:example/pages/text_page.dart';
 import 'package:example/utils.dart';
@@ -34,6 +36,8 @@ class _TailwindAppState extends State<TailwindApp> {
     "/blur": (name: "Blurs", page: BlurPage()),
     "/text": (name: "Text", page: TextPage()),
     "/breaks": (name: "Breakpoints", page: BreaksPage()),
+    "/gradients": (name: "Gradients", page: GradientPage()),
+    "/animation": (name: "Animation", page: AnimationPage()),
   };
 
   @override

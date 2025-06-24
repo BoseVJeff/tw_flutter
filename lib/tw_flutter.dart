@@ -7,6 +7,7 @@ export 'breakpoints.dart';
 export 'transition.dart';
 export 'text.dart';
 export 'sizes.dart';
+export 'animation.dart';
 
 /// A Calculator.
 class Calculator {

@@ -47,5 +47,8 @@ build-text:
 build-font:
     dart run helpers/bin/parse_font.dart tailwindcss/packages/tailwindcss/theme.css
 
+build-animation:
+    dart run helpers/bin/parse_animation.dart tailwindcss/packages/tailwindcss/theme.css
+
 build-sizes:
     dart run helpers/bin/parse_spacing.dart tailwindcss/packages/tailwindcss/theme.css

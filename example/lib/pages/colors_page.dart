@@ -77,17 +77,17 @@ class _ColorsPageState extends State<ColorsPage> {
           padding: const EdgeInsets.all(8.0),
           child: SwatchWidget(color: swatch),
         ),
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            gradient: TailwindGradient.linearWithStops(
-              Alignment.centerRight,
-              toColorMap(swatch),
-            ),
-          ),
-          // child: SwatchWidget(color: swatch),
-        ),
+        // Container(
+        //   padding: const EdgeInsets.all(8.0),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(8),
+        //     gradient: TailwindGradient.linearWithStops(
+        //       Alignment.centerRight,
+        //       toColorMap(swatch),
+        //     ),
+        //   ),
+        //   // child: SwatchWidget(color: swatch),
+        // ),
       ],
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:example/pages/animation_page.dart';
 import 'package:example/pages/blur_page.dart';
 import 'package:example/pages/box_page.dart';
@@ -8,8 +6,6 @@ import 'package:example/pages/colors_page.dart';
 import 'package:example/pages/gradient_page.dart';
 import 'package:example/pages/home_page.dart';
 import 'package:example/pages/text_page.dart';
-import 'package:example/utils.dart';
-import 'package:example/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tw_flutter/tw_flutter.dart';
 

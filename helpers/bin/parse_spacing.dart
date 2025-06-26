@@ -1,11 +1,9 @@
-import 'dart:collection';
 import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
 import 'package:csslib/parser.dart' as p;
 import 'package:csslib/visitor.dart' as v;
 import 'package:dart_style/dart_style.dart';
-import 'package:helpers/consts.dart';
 import 'package:helpers/container_breakpoint_visitor.dart';
 import 'package:helpers/spacing_visitor.dart';
 import 'package:logging/logging.dart';
@@ -133,6 +131,7 @@ void main(List<String> args) {
   lib.directives.addAll(
     [
       doubleRef,
+      mapRef,
       sizeRef,
     ].where((e) => e.url != null).toSet().map((e) => Directive.import(e.url!)),
   );

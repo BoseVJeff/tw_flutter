@@ -16,20 +16,16 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.all(TwRadius.xl),
             ),
             padding: TwPadding.p(8),
-            child: DefaultTextStyle(
-              style: Theme.of(context).textTheme.bodyMedium!.withSans(),
-              child: RichText(
-                text: TextSpan(
-                  text: "Welcome to ",
-                  style: TwFont.sans.copyWith(color: TwColors.gray),
-                  children: [
-                    TextSpan(
-                      text: "tw_flutter",
-                      style:
-                          TwFont.mono, //.copyWith(color: TwBasicColors.black),
-                    ),
-                  ],
-                ),
+            child: RichText(
+              text: TextSpan(
+                text: "Welcome to ",
+                style: TwFont.sans.copyWith(color: TwColors.gray),
+                children: [
+                  TextSpan(
+                    text: "tw_flutter",
+                    style: TwFont.mono, //.copyWith(color: TwBasicColors.black),
+                  ),
+                ],
               ),
             ),
           ),

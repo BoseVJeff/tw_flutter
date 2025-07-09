@@ -191,6 +191,7 @@ class _TwAnimatedBounceState extends State<TwAnimatedBounce>
     with SingleTickerProviderStateMixin {
   late AnimationController _parent;
   late CurvedAnimation _animation;
+  late Animation<Offset> _offsetAnimation;
 
   @override
   void initState() {
@@ -206,6 +207,10 @@ class _TwAnimatedBounceState extends State<TwAnimatedBounce>
       curve: Cubic(0.8, 0, 1, 1),
       reverseCurve: Cubic(0, 0, 0.2, 1),
     );
+    _offsetAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(0, 0.25),
+    ).animate(_animation);
   }
 
   @override
@@ -222,7 +227,8 @@ class _TwAnimatedBounceState extends State<TwAnimatedBounce>
     //   baseHeight: 10,
     //   child: widget.child,
     // );
-    return SizeBuilder(listenable: _animation, child: widget.child);
+    // return SizeBuilder(listenable: _animation, child: widget.child);
+    return SlideTransition(position: _offsetAnimation, child: widget.child);
   }
 }
 
@@ -258,6 +264,7 @@ class _SizeBuilderState extends State<SizeBuilder> {
   final GlobalKey _key = GlobalKey(debugLabel: "Sizing Key");
   bool isOffstage = false;
   Size? _size;
+  late Animation<Offset> _offsetAnimation;
 
   Size? _getSize() {
     if (_key.currentContext!.mounted &&
@@ -274,6 +281,10 @@ class _SizeBuilderState extends State<SizeBuilder> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         _size = _getSize();
+        _offsetAnimation = Tween<Offset>(
+          begin: Offset.zero,
+          end: Offset(0, _size!.height),
+        ).animate(widget.listenable as CurvedAnimation);
       });
     });
   }
@@ -286,8 +297,17 @@ class _SizeBuilderState extends State<SizeBuilder> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         _size = _getSize();
+        _offsetAnimation = Tween<Offset>(
+          begin: Offset.zero,
+          end: Offset(0, _size!.height),
+        ).animate(widget.listenable as CurvedAnimation);
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -307,6 +327,10 @@ class _SizeBuilderState extends State<SizeBuilder> {
             baseHeight: _size!.height,
             child: widget.child,
           );
+          // return SlideTransition(
+          //   position: _offsetAnimation,
+          //   child: widget.child,
+          // );
         }
       },
     );

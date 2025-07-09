@@ -40,7 +40,7 @@ class BreaksPage extends StatelessWidget {
             ...windowSizes.entries.map(
               (e) => Center(
                 child: Container(
-                  margin: TwMargin.p(2),
+                  margin: TwMargin.m(2),
                   height: TwSize.baseSize * 8,
                   width: e.value,
                   decoration: BoxDecoration(
@@ -57,7 +57,7 @@ class BreaksPage extends StatelessWidget {
             ...containerSizes.entries.map(
               (e) => Center(
                 child: Container(
-                  margin: TwMargin.p(2),
+                  margin: TwMargin.m(2),
                   height: TwSize.baseSize * 8,
                   width: e.value,
                   decoration: BoxDecoration(

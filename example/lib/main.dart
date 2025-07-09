@@ -199,7 +199,7 @@ class _TailwindAppState extends State<TailwindApp> {
                       ),
                     ),
                     child: Container(
-                      margin: TwMargin.px(4),
+                      margin: TwMargin.mx(4),
                       padding: TwPadding.px(2),
                       decoration: BoxDecoration(
                         color: TwBasicColors.white,

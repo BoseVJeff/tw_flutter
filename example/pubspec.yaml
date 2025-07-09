@@ -39,7 +39,6 @@ dependencies:
   # The library to be demo'ed
   tw_flutter:
     path: ./../
-  enhanced_gradients: ^2.0.0
 
 dev_dependencies:
   flutter_test:

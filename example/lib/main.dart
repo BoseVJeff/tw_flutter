@@ -3,6 +3,7 @@ import 'package:example/pages/blur_page.dart';
 import 'package:example/pages/box_page.dart';
 import 'package:example/pages/breaks_page.dart';
 import 'package:example/pages/colors_page.dart';
+import 'package:example/pages/curves_page.dart';
 import 'package:example/pages/gradient_page.dart';
 import 'package:example/pages/home_page.dart';
 import 'package:example/pages/spacing_page.dart';
@@ -55,6 +56,12 @@ class _TailwindAppState extends State<TailwindApp> {
       page: SpacingPage(),
       icon: Icon(Icons.expand_outlined),
       selectedIcon: Icon(Icons.expand),
+    ),
+    "/curves": (
+      name: "Curves",
+      page: CurvesPage(),
+      icon: Icon(Icons.linear_scale),
+      selectedIcon: Icon(Icons.linear_scale_rounded),
     ),
     "/blur": (
       name: "Blurs",

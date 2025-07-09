@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:tw_flutter/src/tailwind_padding.dart';
-
 import 'src/tailwind_sizes.dart';
 
 export 'src/tailwind_padding.dart';

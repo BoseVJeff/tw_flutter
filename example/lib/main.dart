@@ -5,6 +5,7 @@ import 'package:example/pages/breaks_page.dart';
 import 'package:example/pages/colors_page.dart';
 import 'package:example/pages/gradient_page.dart';
 import 'package:example/pages/home_page.dart';
+import 'package:example/pages/spacing_page.dart';
 import 'package:example/pages/text_page.dart';
 import 'package:flutter/material.dart';
 import 'package:tw_flutter/tw_flutter.dart';
@@ -48,6 +49,12 @@ class _TailwindAppState extends State<TailwindApp> {
       page: BoxPage(),
       icon: Icon(Icons.crop_square_outlined),
       selectedIcon: Icon(Icons.crop_square),
+    ),
+    "/spacing": (
+      name: "Spacing",
+      page: SpacingPage(),
+      icon: Icon(Icons.expand_outlined),
+      selectedIcon: Icon(Icons.expand),
     ),
     "/blur": (
       name: "Blurs",

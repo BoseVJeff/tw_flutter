@@ -58,7 +58,6 @@ void main(List<String> args) {
     b.docs.addAll([
       "/// All of the color swatches defined as a part of Tailwind.",
       "///",
-      "/// These are defined as hex values.",
       "/// Best used in material apps or other cases where a [MaterialColor] may be needed.",
     ]);
 
@@ -68,6 +67,10 @@ void main(List<String> args) {
       fieldBuilder.modifier = FieldModifier.constant;
       fieldBuilder.static = true;
       fieldBuilder.type = Reference("MaterialColor");
+
+      fieldBuilder.docs.add("/// Corresponds to `--color-${c.key}-*`");
+      fieldBuilder.docs.add("///");
+      fieldBuilder.docs.add("/// Original colors:");
 
       StringBuffer codeBuffer = StringBuffer("MaterialColor(");
 
@@ -87,6 +90,10 @@ void main(List<String> args) {
         }
         codeBuffer.write(
           "${s.key.toRadixString(10)}: Color.from(alpha:${color.alpha}, red:${color.channel("red")}, green:${color.channel("green")}, blue:${color.channel("blue")}, colorSpace: ColorSpace.$colorSpace),",
+        );
+
+        fieldBuilder.docs.add(
+          "///\n/// `${s.key.toRadixString(10)}`: `${s.value.toCssString()}`",
         );
       }
       codeBuffer.write("}");

@@ -64,6 +64,10 @@ void main(List<String> args) {
       fieldBuilder.static = true;
       fieldBuilder.type = Reference("ColorSwatch<int>");
 
+      fieldBuilder.docs.add("/// Corresponds to `--color-${c.key}-*`");
+      fieldBuilder.docs.add("///");
+      fieldBuilder.docs.add("/// Original colors:");
+
       StringBuffer codeBuffer = StringBuffer("ColorSwatch(");
 
       codeBuffer.write("0xff${hexColors[c.key]![500]!.substring(1)}");
@@ -71,13 +75,18 @@ void main(List<String> args) {
       codeBuffer.write(",{");
       for (var s in c.value.entries) {
         SassColor color = s.value;
-        if (color.space == ColorSpace.a98Rgb) {
+        if (color.space == ColorSpace.rgb) {
         } else {
-          color = color.toSpace(ColorSpace.displayP3);
+          color = color
+              .toSpace(ColorSpace.rgb)
+              .toGamut(GamutMapMethod.localMinde);
         }
         codeBuffer.write(
           // "${s.key.toRadixString(10)}: Color.from(alpha:${color.alpha}, red:${color.channel("red")}, green:${color.channel("green")}, blue:${color.channel("blue")}, colorSpace: ColorSpace.$colorSpace),",
           "${s.key.toRadixString(10)}: Color(0xff${hexColors[c.key]![s.key]!.substring(1)}),",
+        );
+        fieldBuilder.docs.add(
+          "///\n/// `${s.key.toRadixString(10)}`: `${s.value.toCssString()}`",
         );
       }
       codeBuffer.write("}");

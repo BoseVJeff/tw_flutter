@@ -1,7 +1,5 @@
 import 'dart:math';
-import 'dart:ui';
 
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class TwAnimationSpin extends StatefulWidget {
@@ -264,7 +262,6 @@ class _SizeBuilderState extends State<SizeBuilder> {
   final GlobalKey _key = GlobalKey(debugLabel: "Sizing Key");
   bool isOffstage = false;
   Size? _size;
-  late Animation<Offset> _offsetAnimation;
 
   Size? _getSize() {
     if (_key.currentContext!.mounted &&
@@ -281,10 +278,6 @@ class _SizeBuilderState extends State<SizeBuilder> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         _size = _getSize();
-        _offsetAnimation = Tween<Offset>(
-          begin: Offset.zero,
-          end: Offset(0, _size!.height),
-        ).animate(widget.listenable as CurvedAnimation);
       });
     });
   }
@@ -297,10 +290,6 @@ class _SizeBuilderState extends State<SizeBuilder> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         _size = _getSize();
-        _offsetAnimation = Tween<Offset>(
-          begin: Offset.zero,
-          end: Offset(0, _size!.height),
-        ).animate(widget.listenable as CurvedAnimation);
       });
     });
   }

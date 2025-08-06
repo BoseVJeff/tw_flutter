@@ -1,6 +1,6 @@
 name: tw_flutter
 description: "A new Flutter package project."
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/BoseVJeff/tw_flutter.git
 
 environment:

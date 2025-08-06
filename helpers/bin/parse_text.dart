@@ -58,7 +58,6 @@ void main(List<String> args) {
   print(weightVisitor.parsedWeights);
 
   LibraryBuilder lib = LibraryBuilder();
-  lib.directives.add(Directive.import("dart:ui"));
   lib.directives.add(Directive.import("package:flutter/painting.dart"));
 
   Class sizeClass = Class((ClassBuilder cb) {

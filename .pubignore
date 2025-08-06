@@ -1,3 +1,7 @@
 helpers/
 tailwindcss
 tailwindcss.com
+tools/
+
+tailwindcss/packages/@tailwindcss-cli/src/commands/build/index.ts
+tailwindcss/packages/@tailwindcss-cli/src/commands/build/utils.ts

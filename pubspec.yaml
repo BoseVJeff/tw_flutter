@@ -1,6 +1,6 @@
 name: tw_flutter
 description: "Tailwind utilities for Flutter apps"
-version: 0.1.2
+version: 0.1.1
 repository: https://github.com/BoseVJeff/tw_flutter.git
 
 environment:
